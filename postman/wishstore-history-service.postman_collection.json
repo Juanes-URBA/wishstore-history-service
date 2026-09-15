@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "wishstore-history-service",
+    "description": "Colección de pruebas para el microservicio wishstore-history-service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8083"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET /history - Listar historial",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history",
+          "host": ["{{baseUrl}}"],
+          "path": ["history"]
+        }
+      }
+    },
+    {
+      "name": "GET /history/{id} - Buscar existente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "1"]
+        }
+      }
+    },
+    {
+      "name": "GET /history/{id} - Buscar inexistente (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/99999",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "99999"]
+        }
+      }
+    },
+    {
+      "name": "GET /history/wishlist/{wishlistId} - Con historial",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/wishlist/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "wishlist", "1"]
+        }
+      }
+    },
+    {
+      "name": "GET /history/wishlist/{wishlistId} - Sin historial (lista vacía)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/wishlist/99999",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "wishlist", "99999"]
+        }
+      }
+    },
+    {
+      "name": "GET /history/product/{productId} - Con historial",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/product/10",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "product", "10"]
+        }
+      }
+    },
+    {
+      "name": "POST /history - Creación correcta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"wishlistId\": 1,\n  \"productId\": 10,\n  \"action\": \"ADD\",\n  \"description\": \"Producto agregado a favoritos\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/history",
+          "host": ["{{baseUrl}}"],
+          "path": ["history"]
+        }
+      }
+    },
+    {
+      "name": "POST /history - Validación incorrecta (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": 10,\n  \"description\": \"Falta wishlistId y action\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/history",
+          "host": ["{{baseUrl}}"],
+          "path": ["history"]
+        }
+      }
+    },
+    {
+      "name": "POST /history - Description demasiado larga (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"wishlistId\": 1,\n  \"productId\": 10,\n  \"action\": \"ADD\",\n  \"description\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/history",
+          "host": ["{{baseUrl}}"],
+          "path": ["history"]
+        }
+      }
+    },
+    {
+      "name": "DELETE /history/{id} - Eliminación correcta",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE /history/{id} - Registro inexistente (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/history/99999",
+          "host": ["{{baseUrl}}"],
+          "path": ["history", "99999"]
+        }
+      }
+    }
+  ]
+}
