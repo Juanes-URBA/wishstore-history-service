@@ -1,14 +1,15 @@
 server:
-  port: 8083
+  port: ${SERVER_PORT:8083}
 
 spring:
   application:
     name: wishstore-history-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/wishstore_history_db
-    username: root
-    password: root
+    url: ${DB_URL:jdbc:mysql://localhost:3306/wishstore_history_db}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -17,3 +18,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
