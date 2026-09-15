@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WishstoreHistoryServiceApplication {
+public class HistoryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WishstoreHistoryServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HistoryApplication.class, args);
+    }
 
 }
